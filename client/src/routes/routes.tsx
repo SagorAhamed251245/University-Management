@@ -13,6 +13,14 @@ const router = createBrowserRouter([
       { path: "contact", element: <Contact /> },
     ],
   },
+  {
+    path: "/admin",
+    element: <App />,
+    children: [
+      { path: "about", element: <About /> },
+      { path: "contact", element: <Contact /> },
+    ],
+  },
 ]);
 
 export default router;
