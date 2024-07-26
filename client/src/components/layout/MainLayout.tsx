@@ -1,27 +1,42 @@
-import { createElement } from "react";
-import {
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from "@ant-design/icons";
-import { Layout, Menu } from "antd";
+import { Layout, Menu, MenuProps } from "antd";
 
 const { Header, Content, Footer, Sider } = Layout;
 
-const items = [
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-  UserOutlined,
-].map((icon, index) => ({
-  key: String(index + 1),
-  icon: createElement(icon),
-  label: `nav ${index + 1}`,
-}));
+const items: MenuProps["items"] = [
+  {
+    label: "Dashboard",
+    key: "1",
+  },
+  {
+    label: "Home",
+    key: "2",
+  },
+  {
+    label: "Profile",
+    key: "3",
+  },
+  {
+    label: "Admin",
+    key: "4",
+    children: [
+      {
+        label: "users",
+        key: "5",
+      },
+      {
+        label: "Perchers",
+        key: "6",
+      },
+    ],
+  },
+];
+items.map((item, index) => {
+  return { key: String(index + 1), label: item };
+});
 const MainLayout = () => {
   return (
     <>
-      <Layout>
+      <Layout style={{ height: "100vh" }}>
         <Sider
           breakpoint="lg"
           collapsedWidth="0"
@@ -32,7 +47,17 @@ const MainLayout = () => {
             console.log(collapsed, type);
           }}
         >
-          <div className="demo-logo-vertical" />
+          <div
+            style={{
+              height: "4rem",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "white",
+            }}
+          >
+            <h1>PH University</h1>
+          </div>
           <Menu
             theme="dark"
             mode="inline"
@@ -41,13 +66,12 @@ const MainLayout = () => {
           />
         </Sider>
         <Layout>
-          <Header style={{ padding: 0, background: "green" }} />
+          <Header style={{ padding: 0 }} />
           <Content style={{ margin: "24px 16px 0" }}>
             <div
               style={{
-                padding: 24,
+                padding: 0,
                 minHeight: 360,
-                background: "green",
                 borderRadius: "30px",
               }}
             >
