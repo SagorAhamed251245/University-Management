@@ -6,19 +6,19 @@ const { Header, Content, Footer, Sider } = Layout;
 const items: MenuProps["items"] = [
   {
     label: "Dashboard",
-    key: "1",
+    key: "Dashboard",
   },
   {
     label: "Home",
-    key: "2",
+    key: "Home",
   },
   {
     label: "Profile",
     key: "3",
   },
   {
-    label: "Admin",
-    key: "4",
+    label: "User Management",
+    key: "User Management",
     children: [
       {
         label: "users",
