@@ -3,7 +3,7 @@ import CreateAdmin from "../pages/admin/CreateAdmin";
 import CreateFaculty from "../pages/admin/CreateFaculty";
 import CreateStudent from "../pages/admin/CreateStudent";
 
-const adminPaths2 = [
+export const adminPaths = [
   {
     name: "Dashboard",
     path: "dashboard",
@@ -26,10 +26,3 @@ const adminPaths2 = [
     ],
   },
 ];
-const adminPaths = [
-  { path: "dashboard", element: <AdminDashboard /> },
-  { path: "create-admin", element: <CreateAdmin /> },
-  { path: "create-faculty", element: <CreateFaculty /> },
-  { path: "create-student", element: <CreateStudent /> },
-];
-export default adminPaths;
