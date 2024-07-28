@@ -3,8 +3,8 @@ import App from "../App";
 import About from "../pages/About";
 import Contact from "../pages/Contact";
 
-import AdminDashboard from "../pages/admin/AdminDashboard";
-import { adminRoutes } from "../utils/adminRoutes";
+import { routesGenerator } from "../utils/routesGenerator";
+import { adminPaths } from "./admin.routes";
 
 const router = createBrowserRouter([
   {
@@ -20,7 +20,7 @@ const router = createBrowserRouter([
     path: "/admin",
     element: <App />,
     // children:  adminPaths, // with out index
-    children: [{ index: true, element: <AdminDashboard /> }, ...adminRoutes],
+    children: routesGenerator(adminPaths),
   },
 ]);
 
