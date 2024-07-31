@@ -1,40 +1,41 @@
-const { Sider } = Layout;
+import { Layout, Menu } from "antd";
 import { adminPaths } from "../../routes/admin.routes";
 import { facultyPaths } from "../../routes/faculty.routes";
 import { studentPaths } from "../../routes/student.routes";
 import { SidebarItemsGenerator } from "../../utils/sidebarItemsGenerator";
-import { Layout, Menu } from "antd";
+import { TMenuItem } from "../../types";
+// Assume TMenuItem is the correct type for Ant Design Menu items
+
+const { Sider } = Layout;
 
 const Sidebar = () => {
-  let sidebarItems;
+  let sidebarItems: TMenuItem[] = [];
 
   const userRole = { ADMIN: "admin", FACULTY: "faculty", STUDENT: "student" };
 
   const role = "student";
   switch (role) {
     case userRole.ADMIN:
-      sidebarItems = SidebarItemsGenerator(adminPaths, userRole.ADMIN);
+      sidebarItems = SidebarItemsGenerator(
+        adminPaths,
+        userRole.ADMIN
+      ) as TMenuItem[];
       break;
     case userRole.FACULTY:
-      sidebarItems = SidebarItemsGenerator(facultyPaths, userRole.FACULTY);
+      sidebarItems = SidebarItemsGenerator(
+        facultyPaths,
+        userRole.FACULTY
+      ) as TMenuItem[];
       break;
     case userRole.STUDENT:
-      sidebarItems = SidebarItemsGenerator(studentPaths, userRole.STUDENT);
+      sidebarItems = SidebarItemsGenerator(
+        studentPaths,
+        userRole.STUDENT
+      ) as TMenuItem[];
       break;
 
     default:
-      [
-        {
-          key: "",
-          label: "",
-          children: [
-            {
-              key: "",
-              label: "",
-            },
-          ],
-        },
-      ];
+      sidebarItems = [];
       break;
   }
 
@@ -60,12 +61,14 @@ const Sidebar = () => {
       >
         <h1>PH University</h1>
       </div>
-      <Menu
-        theme="dark"
-        mode="inline"
-        defaultSelectedKeys={["4"]}
-        items={sidebarItems!}
-      />
+      {sidebarItems.length > 0 && (
+        <Menu
+          theme="dark"
+          mode="inline"
+          defaultSelectedKeys={["4"]}
+          items={sidebarItems}
+        />
+      )}
     </Sider>
   );
 };
