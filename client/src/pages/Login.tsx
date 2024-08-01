@@ -5,6 +5,7 @@ import { TUserLoginInfo } from "../types";
 import { useAppDispatch } from "../redux/hook";
 import { setUser } from "../redux/features/auth/authSlice";
 import verifyToken from "../utils/verifyToken";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { handleSubmit, register } = useForm({
@@ -13,6 +14,7 @@ const Login = () => {
       password: "admin12345",
     },
   });
+  const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
   const [login] = useLoginMutation();
@@ -31,6 +33,8 @@ const Login = () => {
         token: res.data.accessToken,
       })
     );
+    console.log("navigate");
+    navigate("/");
   };
   return (
     <form onSubmit={handleSubmit(onsubmit)}>
