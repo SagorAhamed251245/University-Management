@@ -15,7 +15,7 @@ const Login = () => {
   });
 
   const dispatch = useAppDispatch();
-  const [login, { data, error }] = useLoginMutation();
+  const [login] = useLoginMutation();
 
   const onsubmit = async (data: { id: string; password: string }) => {
     const userInfo: TUserLoginInfo = {
