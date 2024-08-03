@@ -6,6 +6,7 @@ import { adminPaths } from "./admin.routes";
 import { facultyPaths } from "./faculty.routes";
 import { studentPaths } from "./student.routes";
 import Login from "../pages/Login";
+import { superAdminPaths } from "./superAdmin.routes";
 
 const router = createBrowserRouter([
   {
@@ -13,11 +14,18 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
+    path: "/superAdmin",
+    element: <App />,
+    // children:  adminPaths, // with out index
+    children: routesGenerator(superAdminPaths),
+  },
+  {
     path: "/admin",
     element: <App />,
     // children:  adminPaths, // with out index
     children: routesGenerator(adminPaths),
   },
+
   {
     path: "/faculty",
     element: <App />,

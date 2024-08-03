@@ -4,17 +4,32 @@ import { facultyPaths } from "../../routes/faculty.routes";
 import { studentPaths } from "../../routes/student.routes";
 import { SidebarItemsGenerator } from "../../utils/sidebarItemsGenerator";
 import { TMenuItem } from "../../types";
-// Assume TMenuItem is the correct type for Ant Design Menu items
+import { superAdminPaths } from "../../routes/superAdmin.routes";
 
 const { Sider } = Layout;
 
 const Sidebar = () => {
   let sidebarItems: TMenuItem[] = [];
 
-  const userRole = { ADMIN: "admin", FACULTY: "faculty", STUDENT: "student" };
+  const role =
+    JSON.parse(
+      JSON.parse(localStorage.getItem("persist:auth") || "{}").user || "{}"
+    ).role || null;
 
-  const role = "student";
+  const userRole = {
+    SUPER_ADMIN: "superAdmin",
+    ADMIN: "admin",
+    FACULTY: "faculty",
+    STUDENT: "student",
+  };
+
   switch (role) {
+    case userRole.SUPER_ADMIN:
+      sidebarItems = SidebarItemsGenerator(
+        superAdminPaths,
+        userRole.SUPER_ADMIN
+      ) as TMenuItem[];
+      break;
     case userRole.ADMIN:
       sidebarItems = SidebarItemsGenerator(
         adminPaths,

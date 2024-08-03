@@ -2,6 +2,7 @@ import { TSidebarItem, TUserPath } from "../types";
 import { Link } from "react-router-dom";
 
 export const SidebarItemsGenerator = (items: TUserPath[], role: string) => {
+  console.log(items);
   const sidebarItems = items.reduce((acc: TSidebarItem[], item) => {
     if (item.path && item.name) {
       acc.push({
